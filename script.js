@@ -1,43 +1,40 @@
-let productDiv = document.querySelector(".product")
-let category = document.querySelector(".categoryList")
+let productDiv = document.querySelector(".product");
+let category = document.querySelector(".categoryList");
+let searchInput = document.querySelector("#searchInput");
 
-var all = [];
+let all = [];
 
-var displayProduct = async (allCheckCat = []) => {
+const displayProduct = async (allCheckCat = []) => {
     productDiv.innerHTML = '';
 
     let product = await fetch('https://cdn.shopify.com/s/files/1/0564/3685/0790/files/multiProduct.json');
     let finalProduct = await product.json();
-    console.log(finalProduct?.categories)
+
     finalProduct?.categories.forEach((element) => {
         if (!all.includes(element.category_name)) {
             category.innerHTML += ` <label>
             <input type="checkbox" onclick='categoryFilter()' value="${element.category_name}"> &nbsp; ${element.category_name}&nbsp;&nbsp;
-            </label>`
-            all.push(element.category_name)
-        }
-        console.log(`Category Name : ${element.category_name}`);
-
-        if (allCheckCat.length == 0) {
-            allCheckCat = all;
+            </label>`;
+            all.push(element.category_name);
         }
 
-        if (allCheckCat.includes(element.category_name)) {
+        if (allCheckCat.length === 0 || allCheckCat.includes(element.category_name)) {
             element.category_products.forEach((item) => {
-                productDiv.innerHTML += `<div class="productItems">
-                <h6>${item.vendor}</h6>
-                <hr/>
-                <img src=${item.image}>
-                <h6>${item.badge_text === null ? "" : item.badge_text}</h6>
-                <h6>Price Rs. ${item.price} | <span>${item.compare_at_price}</span></h6>
-                <h5>${item.title}</h5>
-                </div>`
-            })
+                if (item.title.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                    productDiv.innerHTML += `<div class="productItems">
+                    <h6>${item.vendor}</h6>
+                    <hr/>
+                    <img src=${item.image}>
+                    <h6>${item.badge_text === null ? "" : item.badge_text}</h6>
+                    <h6>Price Rs. ${item.price} | <span>${item.compare_at_price}</span></h6>
+                    <h5>${item.title}</h5>
+                    </div>`;
+                }
+            });
         }
-    })
+    });
+};
 
-
-}
 displayProduct();
 
 let categoryFilter = () => {
@@ -47,6 +44,10 @@ let categoryFilter = () => {
         if (element.checked) {
             checkdata.push(element.value);
         }
-    })
-    displayProduct(checkdata)
-}
+    });
+    displayProduct(checkdata);
+};
+
+searchInput.addEventListener('input', () => {
+    displayProduct();
+});
