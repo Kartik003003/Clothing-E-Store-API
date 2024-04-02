@@ -1,0 +1,66 @@
+.container {
+    max-width:100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.clothing-item {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.productItems {
+    margin: 10px;
+    padding: 2px;
+    border: 2px dotted rgb(31, 0, 75);
+    border-radius: 10px;
+}
+
+.productItems:hover {
+    background-color: rgba(188, 255, 233, 0.713);
+    border: none;
+}
+
+.productItems img {
+    margin: 0.6rem;
+    height: 15rem;
+    width: auto;
+    border: -10px;
+    border-radius: 5px;
+}
+
+.productItems s {
+    color: rgb(181, 5, 5);
+}
+
+.productItems span {
+    color: rgb(0, 87, 0);
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul button {
+    border: none;
+    background-color: rgb(83, 1, 15);
+    color: antiquewhite;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#showCartBtn {
+    font-size: 1.5rem;
+    color: rgb(119, 0, 255);
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
