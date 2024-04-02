@@ -1,4 +1,3 @@
-// Selecting DOM elements
 const productDiv = document.querySelector(".product");
 const category = document.querySelector(".categoryList");
 const searchInput = document.querySelector("#searchInput");
@@ -88,7 +87,6 @@ const addToCart = (title, price) => {
 
 const removeItem = (title) => {
     cartItems = cartItems.filter(item => item.title !== title);
-    // Update cart list display after removing the item
     cartList.innerHTML = '';
     cartItems.forEach(item => {
         const listItem = document.createElement('li');

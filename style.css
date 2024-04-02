@@ -18,6 +18,15 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+#searchInput{
+    border: none;
+}
+
+#searchInput:hover{
+    border: solid 2px skyblue;
+    border-radius: 10px;
+}
+
 .productItems {
     margin: 10px;
     padding: 2px;
